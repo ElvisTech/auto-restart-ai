@@ -1,0 +1,20 @@
+[Unit]
+Description=Auto-Restart AI Agent (LangChain + Ollama + MCP)
+After=network.target
+
+[Service]
+Type=simple
+User=aiagent
+Group=aiagent
+WorkingDirectory=/opt/autorestart_ai
+ExecStart=/opt/autorestart_ai/venv/bin/python /opt/autorestart_ai/main.py
+Restart=on-failure
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+Environment=OLLAMA_BASE_URL=http://localhost:11434
+Environment=OLLAMA_MODEL=phi3
+StandardOutput=append:/var/log/auto_restart_ai.log
+StandardError=append:/var/log/auto_restart_ai.err
+
+[Install]
+WantedBy=multi-user.target

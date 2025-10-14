@@ -1,0 +1,7 @@
+langchain
+langchain-ollama
+faiss-cpu
+sentence-transformers
+scikit-learn
+unstructured
+python-dotenv

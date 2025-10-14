@@ -1,0 +1,8 @@
+Service: apache2
+- Restart allowed for transient failures, check configs for repeated crashes.
+
+Service: payment-service
+- Restart allowed on OOM; escalate after 3 restarts in 30 minutes.
+
+Deployment: web-frontend
+- Rolling restart acceptable for readiness probe failures.
