@@ -5,3 +5,4 @@ sentence-transformers
 scikit-learn
 unstructured
 python-dotenv
+numpy<2

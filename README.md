@@ -59,6 +59,20 @@ This project implements a modular auto-restart agent that:
    sudo journalctl -u auto-restart-ai.service -f
    ```
 
+## Ollama Setup
+Ollama is required to run the local model used by the agent.
+
+- Install Ollama:
+  - macOS: `brew install ollama`
+  - Linux: `curl -fsSL https://ollama.com/install.sh | sh`
+  - Windows: `winget install Ollama.Ollama`
+- Start the server: `ollama serve` (default at `http://localhost:11434`)
+- Pull the model: `ollama pull phi3`
+- Quick test: `ollama run phi3 -p "hello"`
+- Configure in `config.py`:
+  - Set `OLLAMA_BASE_URL = "http://localhost:11434"`
+  - Set `OLLAMA_MODEL = "phi3"`
+
 ## Notes
 - Test thoroughly with `DRY_RUN=True`.
 - Configure `config.py` to match your environment (log paths, model, Ollama URL).

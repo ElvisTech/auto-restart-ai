@@ -9,10 +9,12 @@ logger = logging.getLogger(__name__)
 
 def handle_text_line(line, source):
     if not any(k in line for k in ERROR_KEYWORDS):
+        logger.info('not keywords')
         return
     logger.info(f"[ALERT] {source}: {line}")
-    mcp = analyze_log(line)
-    res = handle_mcp_text(mcp, raw_log=line)
+    mcp_msg = analyze_log(line)
+    mcp_text = getattr(mcp_msg, "content", str(mcp_msg))
+    res = handle_mcp_text(mcp_text, raw_log=line)
     logger.info(f"Result: {res}")
 
 def text_worker():

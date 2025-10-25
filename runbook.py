@@ -5,6 +5,7 @@ STATIC = {
     "apache2": True,
     "payment-service": True,
     "web-frontend": True,
+    "myapp": True
 }
 
 def verify_with_runbook(entity_name, log_line=None):

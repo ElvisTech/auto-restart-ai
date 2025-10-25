@@ -15,14 +15,21 @@ def tail_file(path):
 def tail_text_files(paths):
     while True:
         for p in paths:
+            print(f"Checking file: {p}")
             if os.path.exists(p):
+                print(f"File exists: {p}")
                 with open(p, "r") as f:
                     f.seek(0, os.SEEK_END)
                     while True:
                         line = f.readline()
                         if not line:
-                            break
+                            #print(f"No new line in {p}, waiting...")
+                            time.sleep(0.5)  # small sleep instead of break
+                            continue
+                        print(f"Read line from {p}: {line.strip()}")
                         yield line.rstrip("\n"), p
+            else:
+                print(f"File not found: {p}")
         time.sleep(1)
 
 def tail_json_files(glob_patterns):
